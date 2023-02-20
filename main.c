@@ -5,7 +5,7 @@
 #include <strings.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <unistd.h> // read(), write(), close()
+#include <unistd.h>
 #define MAX 80
 #define PORT 8080
 #define SA struct sockaddr
@@ -13,14 +13,12 @@
 void func(int connfd)
 {
     char buff[MAX];
-    for (;;) {
         bzero(buff, MAX);
  	char heads[] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nHost:localhost:8080\r\nContent-Length:3\r\n\r\nhhh";  
         write(connfd, heads, sizeof(heads));
-    }
 }
    
-// Driver function
+
 int main()
 {
     int sockfd, connfd, len;
