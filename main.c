@@ -6,10 +6,18 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <t2.h>
 #define MAX 80
 #define PORT 8080
 #define SA struct sockaddr
-   
+ 
+int answer() {
+
+  set_summ(1);
+  return add(22);  // Will return 42 (=20+22)
+
+}
+
 void func(int connfd)
 {
     char buff[MAX];
@@ -21,13 +29,16 @@ void func(int connfd)
 
 extern char **environ;
 
-int main()
-{
-    
-int i = 0;
+void show_env() {
+	int i = 0;
 	while(environ[i]) {
 	  printf("%s\n", environ[i++]);
 	}
+}
+
+int main()
+{
+    	printf("%d\n", answer());
 	int sockfd, connfd, len;
     struct sockaddr_in servaddr, cli;
    
