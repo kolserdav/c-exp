@@ -19,9 +19,16 @@ void func(int connfd)
 }
    
 
+extern char **environ;
+
 int main()
 {
-    int sockfd, connfd, len;
+    
+int i = 0;
+	while(environ[i]) {
+	  printf("%s\n", environ[i++]);
+	}
+	int sockfd, connfd, len;
     struct sockaddr_in servaddr, cli;
    
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
